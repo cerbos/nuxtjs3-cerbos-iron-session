@@ -1,6 +1,6 @@
 <template>
   <div class="card" :class="{ loading, disabled }">
-    <NuxtLink :to="href" class="card-content">
+    <section class="card-content">
       <div class="icon">
         <slot name="icon" />
       </div>
@@ -11,7 +11,7 @@
       <div class="action">
         <slot name="action" />
       </div>
-    </NuxtLink>
+    </section>
   </div>
 </template>
 
@@ -19,7 +19,6 @@
 import { defineProps } from "vue";
 
 defineProps({
-  href: { type: String, default: undefined },
   title: { type: String, default: undefined },
   loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
@@ -92,10 +91,6 @@ defineProps({
   line-height: 1.5;
 }
 
-.card:hover h3 {
-  text-decoration: underline;
-}
-
 .card-content {
   background: transparent;
   border: none;
@@ -128,7 +123,6 @@ defineProps({
   .card-content {
     grid-template-columns: 24px 1fr 42px;
     padding: 2em;
-    cursor: pointer;
     font: inherit;
   }
 }
