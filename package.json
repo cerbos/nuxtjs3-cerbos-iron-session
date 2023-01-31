@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@cerbos/grpc": "^0.8.2",
+    "@pinia/nuxt": "^0.4.6",
     "pinia": "^2.0.29",
     "sass": "^1.57.1"
   }

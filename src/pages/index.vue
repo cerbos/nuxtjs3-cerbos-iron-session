@@ -1,91 +1,76 @@
 <template>
   <h1>Cerbos, Clerk and NuxtJS 3 Demo App</h1>
-  <p class="description">
-    Example NuxtJS 3 app using Clerk for authentication and Cerbos for
-    authorization.
-  </p>
+  <p class="description">Example NuxtJS 3 app using Cerbos for authorization</p>
 
-  <template v-if="user">
-    <section class="role-selection">
-      <RoleSelect {role} />
-    </section>
-
-    <div class="example-links">
-      <Card
-        href="#resource-access"
-        title="Resource Access Demo"
-        disabled="{!role}"
-      >
-        <img slot="icon" src="/icons/server.svg" alt="" />
-      </Card>
-      <Card href="#route-guard" title="Route Guard Demo" disabled="{!role}">
-        <img slot="icon" src="/icons/lock.svg" alt="" />
-      </Card>
-    </div>
-  </template>
-  <template v-else>
-    <section class="login">
-      <Card
-        title="Log in/Sign up for an account"
-        href="/sign-up"
-        loading="{!$clerk}"
-      >
-        <img slot="icon" src="/icons/user-plus.svg" alt="" />
-        <p>
-          Login to your account or sign up for a new account maanged by
-          Clerk.dev. This will provide your identity which will be used by
-          Cerbos for authorization.
-        </p>
-        <img slot="action" src="/icons/arrow-right.svg" alt="" />
-      </Card>
-    </section>
-  </template>
-
-  <template v-if="user">
+  <template v-if="user.loggedIn">
+    <!-- Policy example -->
     <section class="cerbos-policy-example">
-      <CerbosPolicy {policySource} />
+      <CerbosPolicy />
     </section>
 
+    <!-- Role selection -->
+    <section class="role-selection">
+      <h1>Demo: Set your Role</h1>
+      <p>
+        For this demo set a role that will be used by Cerbos for authorization.
+      </p>
+      <RoleSelect />
+      <p>
+        Once you change the role, re-run the below request to see the impact on
+        the authorization result.
+      </p>
+    </section>
+
+    <!-- Access API authorized by Cerbos -->
     <section id="resource-access" class="demo-resource-authorization">
-      <APIRequest {getResourcesApiSource} />
+      <APIRequest />
     </section>
 
     <section id="route-guard" class="demo-route-guards">
-      <GuardedRoutes disabled="{!role}" />
+      <GuardedRoutes :disabled="!role" />
     </section>
+  </template>
 
-    <section class="user-profile">
-      <h2>Clerk - User Profile</h2>
-      <Card
-        title="Manage your Clerk user profile"
-        @click="$clerk?.openUserProfile"
-      >
-        <img slot="icon" src="/icons/layout.svg" alt="" />
-        <p>
-          Interact with the user button, user profile, and more to preview what
-          your users will see
-        </p>
+  <template v-else>
+    <section class="login">
+      <Card title="Log in to an account">
+        <img slot="icon" src="/icons/user-plus.svg" alt="" />
+        <form>
+          <input
+            v-model="email"
+            type="email"
+            placeholder="Email address"
+            required
+          />
+          <button type="submit" @click.prevent="loginUser">Login</button>
+        </form>
         <img slot="action" src="/icons/arrow-right.svg" alt="" />
       </Card>
     </section>
   </template>
 
   <div class="links">
-    <DocsLink
-      href="https://docs.clerk.dev?utm_source=github&utm_medium=starter_repos&utm_campaign=sveltekit_starter"
-      >Read Clerk documentation
-    </DocsLink>
     <DocsLink href="https://docs.cerbos.dev"
       >Read Cerbos documentation</DocsLink
     >
-    <DocsLink href="https://sveltekit.org/docs"
-      >Read sveltekit documentation</DocsLink
+    <DocsLink href="https://nuxt.com/docs"
+      >Read NuxtJS 3 documentation</DocsLink
     >
   </div>
 </template>
 
 <script setup>
-// import DocsLink from "~/components/DocsLink.vue";
+const userStore = useUserStore();
+
+const user = computed(() => userStore.user);
+const email = ref("");
+
+const loginUser = () => {
+  if (!email.value) {
+    return alert("Please enter an email address");
+  }
+  userStore.login(email.value);
+};
 </script>
 
 <style lang="scss">
@@ -121,6 +106,38 @@ section {
 
   :global(.card) {
     flex-basis: 50%;
+  }
+}
+
+input,
+select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+select {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+button {
+  background-color: #335bf1; /* Green */
+  border: none;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1e3dca;
+    transition: background-color 0.2s ease;
   }
 }
 
