@@ -1,19 +1,21 @@
 import { GRPC as Cerbos } from "@cerbos/grpc";
+
 const cerbos = new Cerbos("localhost:3593", { tls: false });
 
-export default defineEventHandler(async () => {
-  const { user } = useUser();
+export default defineEventHandler(async (event) => {
+  const query = getQuery(event);
+  const user = query?.user ? JSON.parse(query.user as string) : null;
 
-  if (!user.value.isLoggedIn) {
+  if (!user || !user.loggedIn) {
     return "User is not logged in";
   }
 
-  const roles = user.value.role ? [user.value.role as string] : ["user"];
-  const email = user.value.email;
+  const roles = user.role ? [user.role as string] : ["user"];
+  const email = user.email;
 
   const cerbosPayload = {
     principal: {
-      id: user.value.id,
+      id: user.id,
       roles,
       attributes: { email },
     },
@@ -23,7 +25,7 @@ export default defineEventHandler(async () => {
           kind: "contact",
           id: "1",
           attributes: {
-            owner: user.value.id, // faked to demostrate ownership policy
+            owner: user.id, // faked to demostrate ownership policy
             lastUpdated: new Date(2020, 10, 10).toISOString(),
           },
         },
@@ -43,8 +45,6 @@ export default defineEventHandler(async () => {
       },
     ],
   };
-
-  console.log("cerbosPayload", cerbosPayload);
 
   const result = cerbos.checkResources(cerbosPayload);
 
