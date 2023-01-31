@@ -1,6 +1,6 @@
 <template>
-  <select value="user" @change="updateRole">
-    <option v-for="role in roleList" :value="role.name">
+  <select value="user" ref="roleSelect" @change="updateRole">
+    <option v-for="role in roleList" :value="role.value">
       {{ role.label }}
     </option>
   </select>
@@ -13,19 +13,26 @@ defineProps({
 
 const roleList = [
   {
-    name: "user",
+    value: "user",
     label: "User",
   },
   {
-    name: "admin",
+    value: "admin",
     label: "Admin",
   },
 ];
 
-const { updateUser } = useUser();
+const userStore = useUserStore();
+
+const roleSelect = ref();
 
 function updateRole() {
-  const newRole = roleList.find((role) => role.name === roleSelect.value);
-  updateUser({ role: newRole });
+  const newRole = roleList.find(
+    (role) => role.value === roleSelect.value.value
+  );
+
+  if (newRole.value) {
+    userStore.updateUser({ role: newRole.value });
+  }
 }
 </script>

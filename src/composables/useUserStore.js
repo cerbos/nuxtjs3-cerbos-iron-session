@@ -14,6 +14,7 @@ export const useUserStore = defineStore("userStore", {
   actions: {
     login(email, role) {
       this.user = {
+        ...this.user,
         id: "cerbos_user", // Faked ID
         loggedIn: true,
         email,
@@ -32,7 +33,11 @@ export const useUserStore = defineStore("userStore", {
     },
 
     updateUser(newUser) {
-      this.user = { ...this.user, newUser };
+      this.user = { ...this.user, ...newUser };
+
+      if (process.client) {
+        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
+      }
     },
   },
 });
