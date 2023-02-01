@@ -18,7 +18,7 @@ export const useUserStore = defineStore("userStore", {
     login(email, role) {
       this.user = {
         ...this.user,
-        id: "tbd", // Faked ID
+        id: "not-the-current-user", // Hard-coded ID of a user that owns one of the documents
         loggedIn: true,
         email,
         role: role || this.user.role,
