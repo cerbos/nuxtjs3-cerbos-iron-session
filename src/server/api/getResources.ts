@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
     ],
   };
 
-  const result = cerbos.checkResources(cerbosPayload);
+  const result = await cerbos.checkResources(cerbosPayload);
 
   return {
     response: result,
