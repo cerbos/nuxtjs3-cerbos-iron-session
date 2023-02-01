@@ -50,10 +50,10 @@
   </template>
 
   <div class="links">
-    <DocsLink href="https://docs.cerbos.dev"
+    <DocsLink href="https://docs.cerbos.dev" target="_blank"
       >Read Cerbos documentation</DocsLink
     >
-    <DocsLink href="https://nuxt.com/docs"
+    <DocsLink href="https://nuxt.com/docs" target="_blank"
       >Read NuxtJS 3 documentation</DocsLink
     >
   </div>

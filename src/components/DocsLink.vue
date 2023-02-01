@@ -1,7 +1,7 @@
 <template>
-  <a :href="href" target="_blank" rel="noopener noreferrer">
+  <NuxtLink class="link" :to="href">
     <span class="linkText"><slot /></span>
-  </a>
+  </NuxtLink>
 </template>
 
 <script setup>
