@@ -23,13 +23,13 @@ export const useUserStore = defineStore("userStore", {
       };
 
       if (process.client) {
-        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
+        localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
       }
     },
 
     loadUserDetails() {
       if (process.client) {
-        const user = sessionStorage.getItem(SESSION_STORAGE_KEY);
+        const user = localStorage.getItem(SESSION_STORAGE_KEY);
 
         // Fake user loading (similar to what would happen if you actually logged in to a live app)
         setTimeout(() => {
@@ -44,7 +44,7 @@ export const useUserStore = defineStore("userStore", {
 
     logout() {
       if (process.client) {
-        sessionStorage.removeItem(SESSION_STORAGE_KEY);
+        localStorage.removeItem(SESSION_STORAGE_KEY);
       }
     },
 
@@ -52,7 +52,7 @@ export const useUserStore = defineStore("userStore", {
       this.user = { ...this.user, ...newUser };
 
       if (process.client) {
-        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
+        localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
       }
     },
   },
