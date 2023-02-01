@@ -20,15 +20,7 @@
 </script>
 
 <style lang="scss">
-@import "../app.scss";
-.container {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  max-width: 90vw;
-  margin: 0 auto;
-  flex-grow: 1;
-}
+@import "../styles/app.scss";
 
 main {
   display: flex;

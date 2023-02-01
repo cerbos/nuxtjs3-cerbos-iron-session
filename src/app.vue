@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "./app.scss";
+@import "./styles/app.scss";
 
 .loading--container {
   display: flex;
