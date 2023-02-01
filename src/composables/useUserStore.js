@@ -10,6 +10,7 @@ export const useUserStore = defineStore("userStore", {
       email: null,
       role: "user",
     },
+    loading: true,
   }),
   actions: {
     login(email, role) {
@@ -23,6 +24,21 @@ export const useUserStore = defineStore("userStore", {
 
       if (process.client) {
         sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.user));
+      }
+    },
+
+    loadUserDetails() {
+      if (process.client) {
+        const user = sessionStorage.getItem(SESSION_STORAGE_KEY);
+
+        // Fake user loading (similar to what would happen if you actually logged in to a live app)
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+
+        if (user) {
+          this.user = JSON.parse(user);
+        }
       }
     },
 
