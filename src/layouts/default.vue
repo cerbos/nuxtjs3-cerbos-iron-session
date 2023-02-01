@@ -1,5 +1,5 @@
 <template>
-  <!-- <Header /> -->
+  <Header />
   <div class="container">
     <main>
       <slot />
@@ -7,17 +7,6 @@
   </div>
   <!-- <Footer /> -->
 </template>
-
-<script lang="ts">
-// import { setContext } from 'svelte';
-// import Header from '$lib/components/Header.svelte';
-// import Footer from '$lib/components/Footer.svelte';
-// import { PUBLIC_CLERK_FRONTEND_API } from '$env/static/public';
-// import { createClerkStore } from '$lib/clerk-svelte';
-
-// const clearkStore = createClerkStore(PUBLIC_CLERK_FRONTEND_API);
-// setContext('clerk', clearkStore);
-</script>
 
 <style lang="scss">
 @import "../styles/app.scss";

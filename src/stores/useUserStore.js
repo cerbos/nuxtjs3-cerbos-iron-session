@@ -2,21 +2,23 @@ import { defineStore } from "pinia";
 
 const SESSION_STORAGE_KEY = "cerbos_user";
 
+const ORIGINAL_USER = {
+  id: null,
+  loggedIn: false,
+  email: null,
+  role: "user",
+};
+
 export const useUserStore = defineStore("userStore", {
   state: () => ({
-    user: {
-      id: null,
-      loggedIn: false,
-      email: null,
-      role: "user",
-    },
+    user: ORIGINAL_USER,
     loading: true,
   }),
   actions: {
     login(email, role) {
       this.user = {
         ...this.user,
-        id: "cerbos_user", // Faked ID
+        id: "tbd", // Faked ID
         loggedIn: true,
         email,
         role: role || this.user.role,
@@ -43,6 +45,7 @@ export const useUserStore = defineStore("userStore", {
     },
 
     logout() {
+      this.user = ORIGINAL_USER;
       if (process.client) {
         localStorage.removeItem(SESSION_STORAGE_KEY);
       }

@@ -69,6 +69,7 @@ const loginUser = () => {
   if (!email.value) {
     return alert("Please enter an email address");
   }
+  email.value = "";
   userStore.login(email.value);
 };
 </script>
