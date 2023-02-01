@@ -18,8 +18,14 @@
       </li>
     </ul>
     <pre>
-        <code className="language-yaml">
-          {{`---
+       <Prism language="yaml" :source="policySource" />
+      </pre>
+  </div>
+</template>
+
+<script setup>
+const policySource = `
+---
 apiVersion: api.cerbos.dev/v1
 resourcePolicy:
   version: default
@@ -42,12 +48,6 @@ resourcePolicy:
         - user
       condition:
         match:
-          expr: request.resource.attr.owner == request.principal.id`}}
-        </code>
-      </pre>
-  </div>
-</template>
-
-<script setup></script>
-
-<style lang="scss" scoped></style>
+          expr: request.resource.attr.owner == request.principal.id
+`;
+</script>
