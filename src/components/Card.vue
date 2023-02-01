@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="{ loading, disabled }">
+  <div class="card" :class="{ loading, disabled, pointer }">
     <section class="card-content">
       <div class="icon">
         <slot name="icon" />
@@ -22,10 +22,13 @@ defineProps({
   title: { type: String, default: undefined },
   loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
+  pointer: { type: Boolean, default: false },
 });
 </script>
 
 <style lang="scss">
+$hover-color: #335bf1;
+
 .card {
   border: 2px solid #fff;
   border-radius: 0.5em;
@@ -45,6 +48,19 @@ defineProps({
 .disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+.pointer {
+  cursor: pointer;
+
+  &:hover {
+    border-color: $hover-color;
+    transition: border-color 0.2s ease;
+
+    h3 {
+      color: $hover-color;
+      transition: color 0.2s ease;
+    }
+  }
 }
 
 .loading {
