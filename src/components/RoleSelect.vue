@@ -1,5 +1,5 @@
 <template>
-  <select value="user" ref="roleSelect" @change="updateRole">
+  <select :value="currentRole" ref="roleSelect" @change="updateRole">
     <option v-for="role in roleList" :value="role.value">
       {{ role.label }}
     </option>
@@ -22,7 +22,10 @@ const roleList = [
   },
 ];
 
+const currentRole = ref("user");
+
 const userStore = useUserStore();
+const user = computed(() => userStore.user);
 
 const roleSelect = ref();
 
@@ -35,4 +38,9 @@ function updateRole() {
     userStore.updateUser({ role: newRole.value });
   }
 }
+
+onMounted(() => {
+  // Prepopulate current role based on what type of user is logged in
+  currentRole.value = user.value.role;
+});
 </script>
