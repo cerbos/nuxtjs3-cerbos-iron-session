@@ -10,7 +10,7 @@
       </p>
 
       <div class="card">
-        <DocsLink href="/documents/1">
+        <DocsLink href="/documents/1" target="_blank">
           <img src="/icons/lock.svg" alt="" />
           <div>
             <h3>A Route the Admin user role can access</h3>
@@ -25,7 +25,7 @@
         </DocsLink>
       </div>
       <div class="card">
-        <DocsLink href="/documents/2">
+        <DocsLink href="/documents/2" target="_blank">
           <img src="/icons/external-link.svg" alt="" />
           <div>
             <h3>A Route the user who owns the resource can access</h3>
@@ -45,13 +45,13 @@
         </DocsLink>
       </div>
       <div class="card">
-        <DocsLink href="/documents/3">
+        <DocsLink href="/documents/3" target="_blank">
           <img src="/icons/document.svg" alt="" />
           <div>
             <h3>A Route the user does not own</h3>
             <p>
-              This route is "guarded" by the{" "}
-              <code>id</code> of the{" "} <code>author</code> of the
+              This route is "guarded" by the
+              <code>id</code> of the <code>author</code> of the
               <b>document</b> resource.
             </p>
           </div>
