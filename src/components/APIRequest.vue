@@ -18,7 +18,7 @@
     <p>
       Retrieve what permissions a user has on resouces based on upon Cerbos
       policies. The backend will make an authorization call to the Cerbos
-      instance using your Clerk identity and two sample resouces.
+      instance using hardcoded identity and two sample resouces.
     </p>
     <img slot="action" src="/icons/download.svg" alt="" />
   </Card>
@@ -100,41 +100,35 @@ interface TableResult {
   validationErrors: unknown[];
 }
 
-const userStore = useUserStore();
-
-const user = computed(() => userStore.user);
-const role = computed(() => user.value.role);
-
 const tableResults = ref<TableResult[]>([]);
 
 const response = ref<CheckResourcesResponse | null>(null);
+const { data } = await useFetch('/api/auth/session', {
+  headers: useRequestHeaders(),
+});
+
+const { user } = JSON.parse(data.value);
 
 // This just caches and shows the previous results when re-fetching
 const loading = ref(false);
 const makeRequest = async () => {
   loading.value = true;
 
-  if (role) {
-    try {
-      const { data } = await useFetch(`/api/getResources`, {
-        params: {
-          user: JSON.stringify(user.value),
-        },
-      });
-      response.value =
-        data.value && typeof data.value === "object"
-          ? data.value.response
-          : null;
+  try {
+    const { data } = await useFetch(`/api/getResources`);
+    response.value =
+      data.value && typeof data.value === "object"
+        ? data.value.response
+        : null;
 
-      tableResults.value = response.value
-        ? (response.value.results as unknown as TableResult[])
-        : [];
-    } catch (err) {
-      console.error(err);
-      tableResults.value = [];
-    } finally {
-      loading.value = false;
-    }
+    tableResults.value = response.value
+      ? (response.value.results as unknown as TableResult[])
+      : [];
+  } catch (err) {
+    console.error(err);
+    tableResults.value = [];
+  } finally {
+    loading.value = false;
   }
 };
 

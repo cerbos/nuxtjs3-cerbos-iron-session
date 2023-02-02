@@ -22,12 +22,13 @@ const roleList = [
   },
 ];
 
-const currentRole = ref("user");
-
-const userStore = useUserStore();
-const user = computed(() => userStore.user);
 
 const roleSelect = ref();
+const { data } = await useFetch('/api/auth/session', {
+  headers: useRequestHeaders(),
+});
+const session = JSON.parse(data.value);
+const currentRole = ref( session.user.role)
 
 function updateRole() {
   const newRole = roleList.find(
@@ -35,12 +36,7 @@ function updateRole() {
   );
 
   if (newRole.value) {
-    userStore.updateUser({ role: newRole.value });
+    useFetch('/api/auth/updateRole', { query: { role: newRole.value } });
   }
 }
-
-onMounted(() => {
-  // Prepopulate current role based on what type of user is logged in
-  currentRole.value = user.value.role;
-});
 </script>

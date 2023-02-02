@@ -6,22 +6,33 @@
         <span class="appName">NuxtJS 3 + Cerbos Demo App</span>
       </DocsLink>
     </div>
-    <div class="right" v-if="user.loggedIn">
-      <button @click="logoutUser">Logout</button>
-    </div>
+    <button v-if="session.user" @click="logoutUser">Logout</button>
   </header>
 </template>
 
 <script setup>
-const userStore = useUserStore();
+const { data } = await useFetch('/api/auth/session', {
+  headers: useRequestHeaders(),
+});
 
-const user = computed(() => userStore.user);
+const session = JSON.parse(data.value);
+const $router = useRouter();
+const $route = useRoute();
 
-function logoutUser() {
+if ( $route.path !== "/login") {
+  if ( !session || !session.user ) {
+    $router.push('/login');
+  }
+}
+
+async function logoutUser() {
   const confirmed = confirm("Are you sure you want to logout?");
   if (confirmed) {
-    userStore.logout();
-    refreshNuxtData();
+      const { data } = await useFetch('/api/auth/logout');
+
+      if( data.value === 'OK' ) {
+          $router.push('/login');
+      }
   }
 }
 </script>

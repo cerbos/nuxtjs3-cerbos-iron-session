@@ -1,14 +1,15 @@
-import { GRPC as Cerbos } from "@cerbos/grpc";
+import { GRPC } from "@cerbos/grpc";
+import { useSession } from '~/server/utils/session';
 
-const cerbos = new Cerbos("localhost:3593", { tls: false });
+// const cerbos = new Cerbos("localhost:3593", { tls: false });
+export const cerbos = new GRPC(
+  "demo-express-clerk-cerbos-pdp-qh5dbmiiva-uk.a.run.app",
+  { tls: true }
+);
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
-  const user = query?.user ? JSON.parse(query.user as string) : null;
-
-  if (!user || !user.loggedIn) {
-    return "User is not logged in";
-  }
+  
+  const { user } = await useSession(event);
 
   const roles = user.role ? [user.role as string] : ["user"];
   const email = user.email;

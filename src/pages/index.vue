@@ -1,8 +1,7 @@
 <template>
-  <h1>Cerbos, Clerk and NuxtJS 3 Demo App</h1>
+  <h1>Cerbos and NuxtJS 3 Demo App</h1>
   <p class="description">Example NuxtJS 3 app using Cerbos for authorization</p>
 
-  <template v-if="user.loggedIn">
     <!-- Policy example -->
     <section class="cerbos-policy-example">
       <CerbosPolicy />
@@ -29,49 +28,9 @@
     <section id="route-guard" class="demo-route-guards">
       <GuardedRoutes :disabled="!role" />
     </section>
-  </template>
-
-  <template v-else>
-    <section class="login">
-      <Card title="Log in to an account">
-        <img slot="icon" src="/icons/user-plus.svg" alt="" />
-        <form>
-          <input
-            v-model="email"
-            type="email"
-            placeholder="Email address"
-            required
-          />
-          <button type="submit" @click.prevent="loginUser">Login</button>
-        </form>
-        <img slot="action" src="/icons/arrow-right.svg" alt="" />
-      </Card>
-    </section>
-  </template>
-
-  <div class="links">
-    <DocsLink href="https://docs.cerbos.dev" target="_blank"
-      >Read Cerbos documentation</DocsLink
-    >
-    <DocsLink href="https://nuxt.com/docs" target="_blank"
-      >Read NuxtJS 3 documentation</DocsLink
-    >
-  </div>
 </template>
 
 <script setup>
-const userStore = useUserStore();
-
-const user = computed(() => userStore.user);
-const email = ref("");
-
-const loginUser = () => {
-  if (!email.value) {
-    return alert("Please enter an email address");
-  }
-  email.value = "";
-  userStore.login(email.value);
-};
 </script>
 
 <style lang="scss">

@@ -1,21 +1,11 @@
 <template>
-  <div>
-    <div v-if="userIsLoading" class="loading--container">
-      <h1>Loading...</h1>
-    </div>
-    <NuxtLayout v-else>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup>
-const userStore = useUserStore();
-const userIsLoading = computed(() => userStore.loading);
 
-onMounted(() => {
-  userStore.loadUserDetails();
-});
 </script>
 
 <style lang="scss" scoped>

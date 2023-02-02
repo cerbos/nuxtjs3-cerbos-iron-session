@@ -79,12 +79,6 @@ const document = ref({
   icon: "lock",
 });
 
-const userStore = useUserStore();
-// fetch the user from the user store
-const user = computed(() => userStore.user);
-// cerbos requires an array of `roles` so we just wrap `role` in an array
-const roles = computed(() => [user.value.role]);
-
 const documentLoading = ref(true);
 
 onMounted(async () => {
