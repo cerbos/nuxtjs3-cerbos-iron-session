@@ -11,8 +11,8 @@
   <Card
     @click.prevent="makeRequest"
     pointer
-    :title="`fetch('/api/getResources')${role ? ` as ${role}` : ''}`"
-    :disabled="!role"
+    :title="`fetch('/api/getResources')${user.role ? ` as ${user.role}` : ''}`"
+    :disabled="!user.role"
   >
     <img slot="icon" src="/icons/server.svg" alt="" />
     <p>
