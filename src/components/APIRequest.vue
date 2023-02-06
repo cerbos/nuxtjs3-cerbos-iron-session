@@ -11,7 +11,7 @@
   <Card
     @click.prevent="makeRequest"
     pointer
-    :title="`fetch('/api/getResources')${user.role ? ` as ${user.role}` : ''}`"
+    :title="`fetch('/api/getResources')`"
     :disabled="!user.role"
   >
     <img slot="icon" src="/icons/server.svg" alt="" />
@@ -60,7 +60,7 @@
   </template>
   <!-- Not loading & we don't have a response yet -->
   <template v-else>
-    <template v-if="!role">
+    <template v-if="!user.role">
       <Prism source="// You must set a role in the dropdown above" />
     </template>
     <template v-else>
@@ -104,10 +104,10 @@ const tableResults = ref<TableResult[]>([]);
 
 const response = ref<CheckResourcesResponse | null>(null);
 const { data } = await useFetch('/api/auth/session', {
-  headers: useRequestHeaders(),
+  headers: useRequestHeaders() as HeadersInit,
 });
 
-const { user } = JSON.parse(data.value);
+const { user } = JSON.parse(data.value || '{}' );
 
 // This just caches and shows the previous results when re-fetching
 const loading = ref(false);
@@ -132,18 +132,14 @@ const makeRequest = async () => {
   }
 };
 
-const getResourcesSource = `
-import { GRPC as Cerbos } from "@cerbos/grpc";
+const getResourcesSource = `import { GRPC } from "@cerbos/grpc";
+import { useSession } from '~/server/utils/session';
 
-const cerbos = new Cerbos("localhost:3593", { tls: false });
+const cerbos = new GRPC("localhost:3593", { tls: false });
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
-  const user = query?.user ? JSON.parse(query.user as string) : null;
-
-  if (!user || !user.loggedIn) {
-    return "User is not logged in";
-  }
+  
+  const { user } = await useSession(event);
 
   const roles = user.role ? [user.role as string] : ["user"];
   const email = user.email;
@@ -186,7 +182,8 @@ export default defineEventHandler(async (event) => {
   return {
     response: result,
   };
-});`;
+});
+`;
 </script>
 
 <style lang="scss">

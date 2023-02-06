@@ -99,33 +99,14 @@ onMounted(async () => {
     documentAttrs.author = user.id;
   }
 
-  const requestBody = {
-    principal: { id: user.value.id, roles: roles.value },
-    resource: {
-      kind: "document",
-      id: $route.params.id,
-      attributes: documentAttrs,
-    },
-    action: "view",
-  };
-
-  const { data: isAllowed } = await useFetch("/api/isAllowed", {
-    method: "POST",
-    body: requestBody,
-  });
-
-  if (!isAllowed.value) {
-    return showError({
-      statusCode: 403,
-      statusMessage: "Forbidden - You are not allowed to view that",
-      stack: undefined,
-    });
-  }
-
   documentLoading.value = false;
   // get the full document for the page
   document.value = await getDocumentById($route.params.id);
 });
+
+definePageMeta({
+  middleware: ["auth"]
+})
 </script>
 
 <style lang="scss" scoped></style>
