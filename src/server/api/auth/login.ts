@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
         id: "not-the-current-user",
         role: query.role || 'user'
     };
+
     await session.save();
     return 'OK';
 });

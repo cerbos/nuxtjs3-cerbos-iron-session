@@ -82,25 +82,8 @@ const document = ref({
 const documentLoading = ref(true);
 
 onMounted(async () => {
-  // query for the minimal infomation needed to pass to cerbos for an authorization check
-  const documentAttrs = await getDocumentAttributesById($route.params.id);
-
-  // if we can't find a document matching the route param id, throw a 404
-  if (!documentAttrs) {
-    return showError({
-      statusCode: 404,
-      statusMessage: "Document not found",
-      stack: undefined,
-    });
-  }
-
-  // ** fake the ownership of the document for the purposes of this demo **
-  if (documentAttrs?.author === "tbd") {
-    documentAttrs.author = user.id;
-  }
-
   documentLoading.value = false;
-  // get the full document for the page
+
   document.value = await getDocumentById($route.params.id);
 });
 

@@ -1,14 +1,21 @@
 import { useSession } from '~/server/utils/session';
+import { getDocumentAttributesById } from "~/db";
 
 export default defineNuxtRouteMiddleware( async (to, from) => {
     
-    const { user } = await useSession(event);
+    const documentId = to.params.id;
+    const event = useRequestEvent();
+    const { user } = await useSession( event );
+    const documentAttrs = await getDocumentAttributesById(documentId);
 
     const requestBody = {
-        principal: { id: user.value.id, roles: roles.value },
+        principal: { 
+            id: user.id,
+            roles: user.roles || 'user'
+        },
         resource: {
             kind: "document",
-            id: $route.params.id,
+            id: documentId,
             attributes: documentAttrs,
         },
         action: "view",
@@ -19,10 +26,10 @@ export default defineNuxtRouteMiddleware( async (to, from) => {
         body: requestBody,
     });
 
-    if (!isAllowed.value) {
-        return navigateTo('/');
+    if ( !isAllowed.value ) {
+        return abortNavigation( 'Navigation not allowed');
     }
 
-    return navigateTo('/')
+    return navigateTo(to);
 })
 
