@@ -8,19 +8,23 @@
     decision from Cerbos.
   </p>
 
-  <Card
-    @click.prevent="makeRequest"
-    pointer
-    :title="`fetch('/api/getResources')`"
-    :disabled="!user.role"
-  >
-    <img slot="icon" src="/icons/server.svg" alt="" />
-    <p>
-      Retrieve what permissions a user has on resouces based on upon Cerbos
-      policies. The backend will make an authorization call to the Cerbos
-      instance using hardcoded identity and two sample resouces.
-    </p>
-    <img slot="action" src="/icons/download.svg" alt="" />
+  <Card @click.prevent="makeRequest" pointer :disabled="!user.role">
+    <div class="icon">
+      <img slot="icon" src="/icons/server.svg" alt="" />
+    </div>
+    <div>
+      <h3>`fetch('/src/server/src/server/api/getResources')`</h3>
+      <div>
+        <p>
+          Retrieve what permissions a user has on resouces based on upon Cerbos
+          policies. The backend will make an authorization call to the Cerbos
+          instance using hardcoded identity and two sample resouces.
+        </p>
+      </div>
+    </div>
+    <div class="action">
+      <img slot="action" src="/icons/download.svg" alt="" />
+    </div>
   </Card>
 
   <h4>
@@ -68,7 +72,7 @@
     </template>
   </template>
 
-  <h4>/api/getResources</h4>
+  <h4>/src/server/api/getResources</h4>
   <Prism :source="getResourcesSource" />
 </template>
 
@@ -103,11 +107,11 @@ interface TableResult {
 const tableResults = ref<TableResult[]>([]);
 
 const response = ref<CheckResourcesResponse | null>(null);
-const { data } = await useFetch('/api/auth/session', {
+const { data } = await useFetch("/api/auth/session", {
   headers: useRequestHeaders() as HeadersInit,
 });
 
-const { user } = JSON.parse(data.value || '{}' );
+const { user } = JSON.parse(data.value || "{}");
 
 // This just caches and shows the previous results when re-fetching
 const loading = ref(false);
@@ -117,9 +121,7 @@ const makeRequest = async () => {
   try {
     const { data } = await useFetch(`/api/getResources`);
     response.value =
-      data.value && typeof data.value === "object"
-        ? data.value.response
-        : null;
+      data.value && typeof data.value === "object" ? data.value.response : null;
 
     tableResults.value = response.value
       ? (response.value.results as unknown as TableResult[])

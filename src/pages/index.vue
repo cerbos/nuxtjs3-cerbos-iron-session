@@ -2,36 +2,35 @@
   <h1>Cerbos and NuxtJS 3 Demo App</h1>
   <p class="description">Example NuxtJS 3 app using Cerbos for authorization</p>
 
-    <!-- Policy example -->
-    <section class="cerbos-policy-example">
-      <CerbosPolicy />
-    </section>
+  <!-- Policy example -->
+  <section class="cerbos-policy-example">
+    <CerbosPolicy />
+  </section>
 
-    <!-- Role selection -->
-    <section class="role-selection">
-      <h1>Demo: Set your Role</h1>
-      <p>
-        For this demo set a role that will be used by Cerbos for authorization.
-      </p>
-      <RoleSelect />
-      <p>
-        Once you change the role, re-run the below request to see the impact on
-        the authorization result.
-      </p>
-    </section>
+  <!-- Role selection -->
+  <section class="role-selection">
+    <h1>Demo: Set your Role</h1>
+    <p>
+      For this demo set a role that will be used by Cerbos for authorization.
+    </p>
+    <RoleSelect />
+    <p>
+      Once you change the role, re-run the below request to see the impact on
+      the authorization result.
+    </p>
+  </section>
 
-    <!-- Access API authorized by Cerbos -->
-    <section id="resource-access" class="demo-resource-authorization">
-      <APIRequest />
-    </section>
+  <!-- Access API authorized by Cerbos -->
+  <section id="resource-access" class="demo-resource-authorization">
+    <APIRequest />
+  </section>
 
-    <section id="route-guard" class="demo-route-guards">
-      <GuardedRoutes :disabled="!role" />
-    </section>
+  <section id="route-guard" class="demo-route-guards">
+    <GuardedRoutes :disabled="!role" />
+  </section>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss">
 h1 {

@@ -22,13 +22,17 @@ const roleList = [
   },
 ];
 
-
 const roleSelect = ref();
-const { data } = await useFetch('/api/auth/session', {
+const { data } = await useFetch("/api/auth/session", {
   headers: useRequestHeaders(),
 });
+
 const session = JSON.parse(data.value);
-const currentRole = ref( session.user.role)
+const currentRole = ref(session.user.role);
+
+onMounted(() => {
+  roleSelect.value.value = currentRole.value;
+});
 
 function updateRole() {
   const newRole = roleList.find(
@@ -36,7 +40,7 @@ function updateRole() {
   );
 
   if (newRole.value) {
-    useFetch('/api/auth/updateRole', { query: { role: newRole.value } });
+    useFetch("/api/auth/updateRole", { query: { role: newRole.value } });
   }
 }
 </script>

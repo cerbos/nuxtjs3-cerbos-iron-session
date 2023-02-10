@@ -69,7 +69,7 @@
 </template>
 
 <script setup>
-import { getDocumentById, getDocumentAttributesById } from "~/db";
+import { getDocumentById } from "~/db";
 
 const $route = useRoute();
 
@@ -88,8 +88,8 @@ onMounted(async () => {
 });
 
 definePageMeta({
-  middleware: ["auth"]
-})
+  middleware: ["auth"],
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,23 +1,13 @@
 <template>
   <div class="card" :class="{ loading, disabled, pointer }">
     <section class="card-content">
-      <div class="icon">
-        <slot name="icon" />
-      </div>
-      <div>
-        <h3>{{ title }}</h3>
-        <div><slot /></div>
-      </div>
-      <div class="action">
-        <slot name="action" />
-      </div>
+      <slot></slot>
     </section>
   </div>
 </template>
 
 <script setup>
 defineProps({
-  title: { type: String, default: undefined },
   loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   pointer: { type: Boolean, default: false },
