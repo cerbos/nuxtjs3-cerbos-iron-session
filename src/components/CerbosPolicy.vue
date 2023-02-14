@@ -49,5 +49,5 @@ resourcePolicy:
       condition:
         match:
           expr: request.resource.attr.owner == request.principal.id
-`;
+`
 </script>

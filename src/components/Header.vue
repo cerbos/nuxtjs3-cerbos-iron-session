@@ -6,33 +6,35 @@
         <span class="appName">NuxtJS 3 + Cerbos Demo App</span>
       </DocsLink>
     </div>
-    <button v-if="session.user" @click="logoutUser">Logout</button>
+    <button v-if="session.user" @click="logoutUser">
+      Logout
+    </button>
   </header>
 </template>
 
 <script setup>
 const { data } = await useFetch('/api/auth/session', {
-  headers: useRequestHeaders(),
-});
+  headers: useRequestHeaders()
+})
 
-const session = JSON.parse(data.value);
-const $router = useRouter();
-const $route = useRoute();
+const session = JSON.parse(data.value)
+const $router = useRouter()
+const $route = useRoute()
 
-if ( $route.path !== "/login") {
-  if ( !session || !session.user ) {
-    $router.push('/login');
+if ($route.path !== '/login') {
+  if (!session || !session.user) {
+    $router.push('/login')
   }
 }
 
-async function logoutUser() {
-  const confirmed = confirm("Are you sure you want to logout?");
+async function logoutUser () {
+  const confirmed = confirm('Are you sure you want to logout?')
   if (confirmed) {
-      const { data } = await useFetch('/api/auth/logout');
+    const { data } = await useFetch('/api/auth/logout')
 
-      if( data.value === 'OK' ) {
-          $router.push('/login');
-      }
+    if (data.value === 'OK') {
+      $router.push('/login')
+    }
   }
 }
 </script>

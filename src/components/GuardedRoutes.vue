@@ -11,7 +11,7 @@
 
       <div class="card">
         <NuxtLink href="/documents/1" target="_blank" class="card-content">
-          <img src="/icons/lock.svg" alt="" />
+          <img src="/icons/lock.svg" alt="">
           <div>
             <h3>A Route the Admin user role can access</h3>
             <p>
@@ -20,13 +20,13 @@
             </p>
           </div>
           <div>
-            <img src="/icons/arrow-right.svg" alt="" />
+            <img src="/icons/arrow-right.svg" alt="">
           </div>
         </NuxtLink>
       </div>
       <div class="card">
         <NuxtLink href="/documents/2" target="_blank" class="card-content">
-          <img src="/icons/external-link.svg" alt="" />
+          <img src="/icons/external-link.svg" alt="">
           <div>
             <h3>A Route the user who owns the resource can access</h3>
             <p>
@@ -40,13 +40,13 @@
             </p>
           </div>
           <div>
-            <img src="/icons/arrow-right.svg" alt="" />
+            <img src="/icons/arrow-right.svg" alt="">
           </div>
         </NuxtLink>
       </div>
       <div class="card">
         <NuxtLink href="/documents/3" target="_blank" class="card-content">
-          <img src="/icons/document.svg" alt="" />
+          <img src="/icons/document.svg" alt="">
           <div>
             <h3>A Route the user does not own</h3>
             <p>
@@ -56,7 +56,7 @@
             </p>
           </div>
           <div>
-            <img src="/icons/arrow-right.svg" alt="" />
+            <img src="/icons/arrow-right.svg" alt="">
           </div>
         </NuxtLink>
       </div>

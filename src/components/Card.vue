@@ -1,7 +1,7 @@
 <template>
   <div class="card" :class="{ loading, disabled, pointer }">
     <section class="card-content">
-      <slot></slot>
+      <slot />
     </section>
   </div>
 </template>
@@ -10,8 +10,8 @@
 defineProps({
   loading: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  pointer: { type: Boolean, default: false },
-});
+  pointer: { type: Boolean, default: false }
+})
 </script>
 
 <style lang="scss">

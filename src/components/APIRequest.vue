@@ -8,9 +8,9 @@
     decision from Cerbos.
   </p>
 
-  <Card @click.prevent="makeRequest" pointer :disabled="!user.role">
+  <Card pointer :disabled="!user.role" @click.prevent="makeRequest">
     <div class="icon">
-      <img slot="icon" src="/icons/server.svg" alt="" />
+      <img slot="icon" src="/icons/server.svg" alt="">
     </div>
     <div>
       <h3>`fetch('/src/server/src/server/api/getResources')`</h3>
@@ -23,16 +23,14 @@
       </div>
     </div>
     <div class="action">
-      <img slot="action" src="/icons/download.svg" alt="" />
+      <img slot="action" src="/icons/download.svg" alt="">
     </div>
   </Card>
 
   <h4>
     Response
-    <em
-      >You are signed in so the actions for two contact resources will be
-      returned based on Cerbos policies</em
-    >
+    <em>You are signed in so the actions for two contact resources will be
+      returned based on Cerbos policies</em>
   </h4>
 
   <template v-if="tableResults.length">
@@ -46,7 +44,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="{ resource, actions } in tableResults">
+        <tr
+          v-for="{ resource, actions } in tableResults"
+          :key="resource.id"
+        >
           <td>{{ resource.id }}</td>
           <td>{{ actions?.read == "EFFECT_ALLOW" ? "✅" : "❌" }}</td>
           <td>{{ actions?.update == "EFFECT_ALLOW" ? "✅" : "❌" }}</td>
@@ -77,14 +78,7 @@
 </template>
 
 <script lang="ts" setup>
-import { CheckResourcesResponse } from "@cerbos/core";
-
-defineProps({
-  getResourcesApiSource: {
-    type: String,
-    required: true,
-  },
-});
+import { CheckResourcesResponse } from '@cerbos/core'
 
 interface Contact {
   id: string;
@@ -104,35 +98,35 @@ interface TableResult {
   validationErrors: unknown[];
 }
 
-const tableResults = ref<TableResult[]>([]);
+const tableResults = ref<TableResult[]>([])
 
-const response = ref<CheckResourcesResponse | null>(null);
-const { data } = await useFetch("/api/auth/session", {
-  headers: useRequestHeaders() as HeadersInit,
-});
+const response = ref<CheckResourcesResponse | null>(null)
+const { data } = await useFetch('/api/auth/session', {
+  headers: useRequestHeaders() as HeadersInit
+})
 
-const { user } = JSON.parse(data.value || "{}");
+const { user } = JSON.parse(data.value || '{}')
 
 // This just caches and shows the previous results when re-fetching
-const loading = ref(false);
+const loading = ref(false)
 const makeRequest = async () => {
-  loading.value = true;
+  loading.value = true
 
   try {
-    const { data } = await useFetch(`/api/getResources`);
+    const { data } = await useFetch('/api/getResources')
     response.value =
-      data.value && typeof data.value === "object" ? data.value.response : null;
+      data.value && typeof data.value === 'object' ? data.value.response : null
 
     tableResults.value = response.value
       ? (response.value.results as unknown as TableResult[])
-      : [];
+      : []
   } catch (err) {
-    console.error(err);
-    tableResults.value = [];
+    console.error(err)
+    tableResults.value = []
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
 const getResourcesSource = `import { GRPC } from "@cerbos/grpc";
 import { useSession } from '~/server/utils/session';
@@ -185,7 +179,7 @@ export default defineEventHandler(async (event) => {
     response: result,
   };
 });
-`;
+`
 </script>
 
 <style lang="scss">

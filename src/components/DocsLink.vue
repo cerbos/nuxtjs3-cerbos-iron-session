@@ -6,8 +6,8 @@
 
 <script setup>
 defineProps({
-  href: { type: String, default: undefined },
-});
+  href: { type: String, default: undefined }
+})
 </script>
 
 <style lang="scss" scoped>

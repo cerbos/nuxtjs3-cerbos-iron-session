@@ -1,11 +1,13 @@
 <template>
-  <Header />
-  <div class="container">
-    <main>
-      <slot />
-    </main>
+  <div>
+    <Header />
+    <div class="container">
+      <main>
+        <slot />
+      </main>
+    </div>
+    <!-- <Footer /> -->
   </div>
-  <!-- <Footer /> -->
 </template>
 
 <style lang="scss">

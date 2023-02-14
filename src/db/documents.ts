@@ -3,43 +3,43 @@
 // to cerbos for an authorization check.
 const documents = [
   {
-    id: "1",
-    title: "Secret Admin Document",
-    author: "only-admins",
+    id: '1',
+    title: 'Secret Admin Document',
+    author: 'only-admins',
     blurb:
       "Congratulations! You've successfully accessed the admin only resource route.",
-    icon: "lock",
+    icon: 'lock'
   },
   {
-    id: "2",
-    title: "My Very Important Document",
-    author: "tbd", // we will actually fake this and replace this with the user's id
+    id: '2',
+    title: 'My Very Important Document',
+    author: 'tbd', // we will actually fake this and replace this with the user's id
     blurb:
       "This document is available to the author and any user with the 'admin' role.",
-    icon: "unlock",
+    icon: 'unlock'
   },
   {
-    id: "3",
-    title: "A Document",
-    author: "not-the-current-user",
+    id: '3',
+    title: 'A Document',
+    author: 'not-the-current-user',
     blurb:
       "This document is available to it's author and any user with the 'admin' role.",
-    icon: "lock",
-  },
-];
+    icon: 'lock'
+  }
+]
 
-export const getDocuments = async () => {
-  return documents;
-};
+export const getDocuments = () => {
+  return documents
+}
 
-export const getDocumentById = async (id: string) => {
-  return documents.find((doc) => doc.id === id);
-};
+export const getDocumentById = (id: string) => {
+  return documents.find(doc => doc.id === id)
+}
 
-export const getDocumentAttributes = async () => {
-  return documents.map((doc) => ({ id: doc.id, author: doc.author }));
-};
+export const getDocumentAttributes = () => {
+  return documents.map(doc => ({ id: doc.id, author: doc.author }))
+}
 
-export const getDocumentAttributesById = async (id: string) => {
-  return (await getDocumentAttributes()).find((doc) => doc.id === id);
-};
+export const getDocumentAttributesById = (id: string) => {
+  return getDocumentAttributes().find(doc => doc.id === id)
+}

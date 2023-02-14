@@ -1,6 +1,8 @@
 <template>
   <h1>Cerbos and NuxtJS 3 Demo App</h1>
-  <p class="description">Example NuxtJS 3 app using Cerbos for authorization</p>
+  <p class="description">
+    Example NuxtJS 3 app using Cerbos for authorization
+  </p>
 
   <!-- Policy example -->
   <section class="cerbos-policy-example">
