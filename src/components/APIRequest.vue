@@ -101,11 +101,9 @@ interface TableResult {
 const tableResults = ref<TableResult[]>([])
 
 const response = ref<CheckResourcesResponse | null>(null)
-const { data } = await useFetch('/api/auth/session', {
-  headers: useRequestHeaders() as HeadersInit
-})
+const { data } = await useFetch('/api/auth/session');
 
-const { user } = JSON.parse(data.value || '{}')
+const { user } = JSON.parse(data.value as string)
 
 // This just caches and shows the previous results when re-fetching
 const loading = ref(false)
@@ -128,57 +126,55 @@ const makeRequest = async () => {
   }
 }
 
-const getResourcesSource = `import { GRPC } from "@cerbos/grpc";
-import { useSession } from '~/server/utils/session';
-
-const cerbos = new GRPC("localhost:3593", { tls: false });
+const getResourcesSource = `
+import { useSession } from '~/server/utils/session'
+import { cerbos } from "../utils/cerbos";
 
 export default defineEventHandler(async (event) => {
-  
-  const { user } = await useSession(event);
+  const { user } = await useSession(event)
 
-  const roles = user.role ? [user.role as string] : ["user"];
-  const email = user.email;
+  const roles = user.role ? [user.role as string] : ['user']
+  const email = user.email
 
   const cerbosPayload = {
     principal: {
       id: user.id,
       roles,
-      attributes: { email },
+      attributes: { email }
     },
     resources: [
       {
         resource: {
-          kind: "contact",
-          id: "1",
+          kind: 'contact',
+          id: '1',
           attributes: {
             owner: user.id, // faked to demostrate ownership policy
-            lastUpdated: new Date(2020, 10, 10).toISOString(),
-          },
+            lastUpdated: new Date(2020, 10, 10).toISOString()
+          }
         },
-        actions: ["read", "create", "update", "delete"],
+        actions: ['read', 'create', 'update', 'delete']
       },
 
       {
         resource: {
-          kind: "contact",
-          id: "2",
+          kind: 'contact',
+          id: '2',
           attributes: {
-            owner: "test2",
-            lastUpdated: new Date(2020, 10, 10).toISOString(),
-          },
+            owner: 'test2',
+            lastUpdated: new Date(2020, 10, 10).toISOString()
+          }
         },
-        actions: ["read", "create", "update", "delete"],
-      },
-    ],
-  };
+        actions: ['read', 'create', 'update', 'delete']
+      }
+    ]
+  }
 
-  const result = await cerbos.checkResources(cerbosPayload);
+  const result = await cerbos.checkResources(cerbosPayload)
 
   return {
-    response: result,
-  };
-});
+    response: result
+  }
+})
 `
 </script>
 

@@ -3,7 +3,7 @@
     <div>
       <h2>Demo: Guarded Routes</h2>
       <p>
-        For this demo set a <b>role</b> on your Clerk user above and attempt to
+        For this demo set a <b>role</b> on your user above and attempt to
         access the routes below. The <code>admin</code> role has access to all
         routes, while the <code>user</code> role only has access to the user
         route.

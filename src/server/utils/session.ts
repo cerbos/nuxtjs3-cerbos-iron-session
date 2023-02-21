@@ -1,6 +1,7 @@
+import { H3Event } from 'h3'
 import { getIronSession } from 'iron-session'
 
-export async function useSession (event) {
+export async function useSession (event: H3Event) {
   if (event.context.session) {
     return event.context.session
   }

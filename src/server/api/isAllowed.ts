@@ -1,10 +1,5 @@
-import { GRPC } from "@cerbos/grpc";
 import { getDocumentAttributesById } from '~/db';
-
-export const cerbos = new GRPC(
-  "localhost:3592",
-  { tls: false }
-);
+import { cerbos } from "../utils/cerbos";
 
 export default defineEventHandler(async (event) => {
 
@@ -25,9 +20,6 @@ export default defineEventHandler(async (event) => {
     },
     action: 'view'
   }
-
-  console.log(requestBody)
-
 
   const isAllowed = await cerbos.isAllowed(requestBody)
     .catch( (error)=> {

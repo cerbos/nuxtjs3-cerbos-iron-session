@@ -18,51 +18,40 @@
 
           <h4>The load function for this document page:</h4>
           <Prism
-            source="`export let loader: LoaderFunction = async (args) => {
-    // fetch the user from the session
-    const user = await requireUser(args);
+            source="
+import { getDocumentAttributesById } from '~/db';
+import { cerbos } from '../utils/cerbos';
 
-    // cerbos requires an array of \`roles\` so we just wrap \`role\` in an array
-    const roles = user.publicMetadata.role ? [user.publicMetadata.role as string] : [];
-    const { params } = args;
+export default defineEventHandler(async (event) => {
 
-    if (!params.id) {
-      throw json('Document ID required', { status: 400 });
-    }
+  const query = getQuery(event)
+  const { user } = await useSession(event)
+  const documentAttrs = await getDocumentAttributesById(query.documentId as string)
 
-    // query for the minimal infomation needed to pass to cerbos for an authorization check
-    const documentAttrs = await getDocumentAttributesById(params.id);
 
-    // if we can't find a document matching the route param id, throw a 404
-    if (!documentAttrs) {
-      throw json('Not Found', { status: 404 });
-    }
+  const requestBody = {
+    principal: {
+      id: user.id,
+      roles: [user.role]
+    },
+    resource: {
+      kind: 'document',
+      id: query.documentId as string,
+      attributes: documentAttrs
+    },
+    action: 'view'
+  }
 
-    // ** fake the ownership of the document for the purposes of this demo **
-    if (documentAttrs?.author === 'tbd') {
-      documentAttrs.author = user.id;
-    }
-
-    const isAllowed = await cerbos.isAllowed({
-      principal: { id: user.id, roles },
-      resource: {
-        kind: 'document',
-        id: params.id,
-        attributes: documentAttrs,
-      },
-      action: 'view',
-    });
-
-    if (!isAllowed) {
-      throw json('Forbidden', { status: 403 });
-    }
-
-    // get the full document for the page
-    const document = await getDocumentById(params.id);
-
-    return json(document);
-  };
-  `"
+  const isAllowed = await cerbos.isAllowed(requestBody)
+    .catch( (error)=> {
+      console.log( error );
+      return false;
+    })
+  
+  console.log( isAllowed);
+  return isAllowed
+})
+  "
           />
         </div>
       </template>

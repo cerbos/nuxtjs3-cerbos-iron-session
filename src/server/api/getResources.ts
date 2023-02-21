@@ -1,10 +1,5 @@
-import { GRPC } from "@cerbos/grpc";
 import { useSession } from '~/server/utils/session'
-
-export const cerbos = new GRPC(
-  "localhost:3592",
-  { tls: false }
-);
+import { cerbos } from "../utils/cerbos";
 
 export default defineEventHandler(async (event) => {
   const { user } = await useSession(event)

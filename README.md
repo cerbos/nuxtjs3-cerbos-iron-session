@@ -27,8 +27,6 @@ The example features sign-in, guarded route and authenticated API to your Nuxt.j
 
 Cerbos works with any identity provider services like Auth0, Okta, FusionAuth, Clerk, Magic, WorkOS or even your own, bespoke directory system.
 
-In this demo we use [Clerk](https://www.clerk.dev/?utm_source=github&utm_medium=starter_repos&utm_campaign=nextjs_starter) as the identity provider.
-
 Our [Nuxt.js](https://nuxt.com/) application uses iron-sesion behind the scene to provide a simple session mechanism to showcase the power of cerbos. The application is meant to showcase cerbos features like guarded route and permission based API endpoints.
 
 The policies is defined in the `cerbos/policies` directory. Each policy is authored in the a very human-readable format which you can learn more about at the [Cerbos Policy documentation site](https://docs.cerbos.dev/cerbos/latest/policies), and for the demo revolves around access to a `contacts` resource.
@@ -97,7 +95,7 @@ Your showcase is now running a local version of Cerbos, and you can easily make 
 
 ### 4. Start the demo locally
 
-This demo is how to use Clerk with Cerbos in a Next.js application, so to start it you can just start the Next.js app in dev mode with the following command:
+To run your Nuxtjs application locally you can use the following command:
 
 ```bash
 npm run dev
@@ -119,7 +117,7 @@ There is a demonstration of changing the user's role, and seeing how that affect
 
 ## Learn More
 
-To learn more about Clerk.dev, Cerbos and Next.js, take a look at the following resources:
+To learn more about Cerbos and Nuxt.js, take a look at the following resources:
 
 - [Cerbos Website](https://cerbos.dev)
 - [Cerbos Documentation](https://docs.cerbos.dev)
