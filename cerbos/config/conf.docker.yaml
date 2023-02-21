@@ -1,0 +1,9 @@
+---
+server:
+  grpcListenAddr: ":${PORT}"
+storage:
+  driver: "disk"
+  disk:
+    directory: /policies
+telemetry:
+  disabled: false
