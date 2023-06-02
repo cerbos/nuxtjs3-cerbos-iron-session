@@ -105,7 +105,7 @@ You could also `build` and `start` the app to see what it would be like in produ
 
 ### 5. Check out the example implementation
 
-- Open your browser to `http://localhost:3000` to see the included example code running.
+- Open your browser to `http://localhost:3000/login` to see the included example code running.
 
 There is a demonstration of changing the user's role, and seeing how that affects the permissions of the user to take actions on the resources.
 
