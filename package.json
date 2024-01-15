@@ -22,7 +22,7 @@
     "vite-plugin-inspect": "^0.8.0"
   },
   "dependencies": {
-    "@cerbos/grpc": "^0.14.0",
+    "@cerbos/grpc": "^0.15.0",
     "iron-session": "^6.3.1",
     "prismjs": "^1.29.0",
     "sass": "^1.57.1"
