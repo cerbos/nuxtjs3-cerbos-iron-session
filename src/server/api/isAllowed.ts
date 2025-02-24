@@ -1,12 +1,10 @@
-import { getDocumentAttributesById } from '~/db';
-import { cerbos } from "../utils/cerbos";
+import { cerbos } from '../utils/cerbos'
+import { getDocumentAttributesById } from '~/db'
 
 export default defineEventHandler(async (event) => {
-
   const query = getQuery(event)
   const { user } = await useSession(event)
   const documentAttrs = await getDocumentAttributesById(query.documentId as string)
-
 
   const requestBody = {
     principal: {
@@ -22,11 +20,11 @@ export default defineEventHandler(async (event) => {
   }
 
   const isAllowed = await cerbos.isAllowed(requestBody)
-    .catch( (error)=> {
-      console.log( error );
-      return false;
+    .catch((error) => {
+      console.log(error)
+      return false
     })
-  
-  console.log( isAllowed);
+
+  console.log(isAllowed)
   return isAllowed
 })

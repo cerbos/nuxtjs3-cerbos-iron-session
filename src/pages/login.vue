@@ -6,7 +6,9 @@
 
   <section class="login">
     <Card title="Log in to an account">
-      <img slot="icon" src="/icons/user-plus.svg" alt="">
+      <template #icon>
+        <img src="/icons/user-plus.svg" alt="">
+      </template>
       <form>
         <input
           v-model="email"
@@ -18,7 +20,9 @@
           Login
         </button>
       </form>
-      <img slot="action" src="/icons/arrow-right.svg" alt="">
+      <template #action>
+        <img src="/icons/arrow-right.svg" alt="">
+      </template>
     </Card>
   </section>
 

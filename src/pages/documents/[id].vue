@@ -28,7 +28,6 @@ export default defineEventHandler(async (event) => {
   const { user } = await useSession(event)
   const documentAttrs = await getDocumentAttributesById(query.documentId as string)
 
-
   const requestBody = {
     principal: {
       id: user.id,
@@ -47,7 +46,7 @@ export default defineEventHandler(async (event) => {
       console.log( error );
       return false;
     })
-  
+
   console.log( isAllowed);
   return isAllowed
 })
@@ -80,12 +79,12 @@ onMounted(async () => {
 
 definePageMeta({
   validate: async (route) => {
-    const { data: isAllowed } = await useFetch('/api/isAllowed', 
-    {
-      headers: useRequestHeaders(),
-      query: { documentId: route.params.id }
-    })
-    return isAllowed.value;
+    const { data: isAllowed } = await useFetch('/api/isAllowed',
+      {
+        headers: useRequestHeaders(),
+        query: { documentId: route.params.id }
+      })
+    return isAllowed.value
   }
 })
 </script>
