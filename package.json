@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@cerbos/grpc": "^0.20.0",
-    "iron-session": "^6.3.1",
+    "iron-session": "^8.0.0",
     "prismjs": "^1.29.0",
     "sass": "^1.57.1"
   }
