@@ -101,7 +101,7 @@ interface TableResult {
 const tableResults = ref<TableResult[]>([])
 
 const response = ref<CheckResourcesResponse | null>(null)
-const { data } = await useFetch('/api/auth/session');
+const { data } = await useFetch('/api/auth/session')
 
 const { user } = JSON.parse(data.value as string)
 

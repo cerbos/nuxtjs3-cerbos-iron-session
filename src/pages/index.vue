@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+  middleware: 'auth'
+})
+</script>
+
 <template>
   <h1>Cerbos and NuxtJS 3 Demo App</h1>
   <p class="description">

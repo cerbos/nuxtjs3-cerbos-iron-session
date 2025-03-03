@@ -1,5 +1,5 @@
+import { cerbos } from '../utils/cerbos'
 import { useSession } from '~/server/utils/session'
-import { cerbos } from "../utils/cerbos";
 
 export default defineEventHandler(async (event) => {
   const { user } = await useSession(event)
