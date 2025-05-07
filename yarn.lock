@@ -1603,7 +1603,7 @@
     semver "^7.5.4"
     ts-api-utils "^1.0.1"
 
-"@typescript-eslint/eslint-plugin@^8.31.0":
+"@typescript-eslint/eslint-plugin@^8.24.1":
   version "8.31.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.31.0.tgz#ef3ece95406a80026f82a19a2984c1e375981711"
   integrity sha512-evaQJZ/J/S4wisevDvC1KFZkPzRetH8kYZbkgcTRyql3mcKsf+ZFDV1BVWUGTCAW5pQHoqn5gK5b8kn7ou9aFQ==
@@ -1629,7 +1629,7 @@
     "@typescript-eslint/visitor-keys" "6.21.0"
     debug "^4.3.4"
 
-"@typescript-eslint/parser@^8.31.0":
+"@typescript-eslint/parser@^8.24.1":
   version "8.31.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-8.31.0.tgz#5ec28823d06dd20ed5f67b61224823f12ccde095"
   integrity sha512-67kYYShjBR0jNI5vsf/c3WG4u+zDnCTHTPqVMQguffaWWFs7artgwKmfwdifl+r6XyM5LYLas/dInj2T0SgJyw==
@@ -3513,7 +3513,19 @@ eslint-plugin-unicorn@^44.0.2:
     semver "^7.3.7"
     strip-indent "^3.0.0"
 
-eslint-plugin-vue@^9.17.0, eslint-plugin-vue@^9.32.0, eslint-plugin-vue@^9.7.0:
+eslint-plugin-vue@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-10.0.0.tgz#42707bfb8c4490b0b1a4be6f11a416fb16c3d11c"
+  integrity sha512-XKckedtajqwmaX6u1VnECmZ6xJt+YvlmMzBPZd+/sI3ub2lpYZyFnsyWo7c3nMOQKJQudeyk1lw/JxdgeKT64w==
+  dependencies:
+    "@eslint-community/eslint-utils" "^4.4.0"
+    natural-compare "^1.4.0"
+    nth-check "^2.1.1"
+    postcss-selector-parser "^6.0.15"
+    semver "^7.6.3"
+    xml-name-validator "^4.0.0"
+
+eslint-plugin-vue@^9.17.0, eslint-plugin-vue@^9.7.0:
   version "9.33.0"
   resolved "https://registry.npmjs.org/eslint-plugin-vue/-/eslint-plugin-vue-9.33.0.tgz"
   integrity sha512-174lJKuNsuDIlLpjeXc5E2Tss8P44uIimAfGD0b90k0NoirJqpG7stLuU9Vp/9ioTOrQdWVREc4mRd1BD+CvGw==
@@ -5478,7 +5490,7 @@ nth-check@^2.0.1, nth-check@^2.1.1:
   dependencies:
     boolbase "^1.0.0"
 
-nuxt@^3.17.0:
+nuxt@^3.15.4:
   version "3.17.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.17.0.tgz#fa98b892495d4a9efbac2a240eaf18fd558cc056"
   integrity sha512-w4BFU2meHC49za1hRIIBS0P1QG1XOLthb/JJvfq2jbZANrTouXzWHlrSstQykevpKoWs1/hxJ8QGNKxsWU7SeA==
@@ -6597,7 +6609,7 @@ safe-stable-stringify@^2.3.1:
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.5.0.tgz#4ca2f8e385f2831c432a719b108a3bf7af42a1dd"
   integrity sha512-b3rppTKm9T+PsVCBEOUR46GWI7fdOs00VKZ1+9c1EWDaDMvjQc6tUwuFyIprgGgTcWoVHSKrU8H31ZHA2e0RHA==
 
-sass@^1.87.0:
+sass@^1.85.0:
   version "1.87.0"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.87.0.tgz#8cceb36fa63fb48a8d5d7f2f4c13b49c524b723e"
   integrity sha512-d0NoFH4v6SjEK7BoX810Jsrhj7IQSYHAHLi/iSpgqKc7LaIDshFRlSg5LOymf9FqQhxEHs2W5ZQXlvy0KD45Uw==
