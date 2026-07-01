@@ -1,6 +1,6 @@
 <template>
   <select ref="roleSelect" :value="currentRole" @change="updateRole">
-    <option v-for="role in roleList" :value="role.value">
+    <option v-for="role in roleList" :key="role.value" :value="role.value">
       {{ role.label }}
     </option>
   </select>
