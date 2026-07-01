@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async () => {
   const { data } = await useFetch('/api/auth/session', {
     headers: useRequestHeaders()
   })

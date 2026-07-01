@@ -10,7 +10,7 @@
 
   <Card pointer :disabled="!user.role" @click.prevent="makeRequest">
     <div class="icon">
-      <img slot="icon" src="/icons/server.svg" alt="">
+      <img src="/icons/server.svg" alt="">
     </div>
     <div>
       <h3>`fetch('/src/server/src/server/api/getResources')`</h3>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="action">
-      <img slot="action" src="/icons/download.svg" alt="">
+      <img src="/icons/download.svg" alt="">
     </div>
   </Card>
 
@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts" setup>
-import { CheckResourcesResponse } from '@cerbos/core'
+import type { CheckResourcesResponse } from '@cerbos/core'
 
 interface Contact {
   id: string;
