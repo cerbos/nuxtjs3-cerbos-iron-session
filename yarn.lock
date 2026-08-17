@@ -280,32 +280,32 @@
   resolved "https://registry.yarnpkg.com/@bomb.sh/tab/-/tab-0.0.19.tgz#c22f3b75c8a391a38cd956b7391b45551587d76a"
   integrity sha512-dTRfo9Q9B+lbLG3JCu8a/AGQSfD2XXcFcnakQzVjSOX+VvR/s9zpsH8TlqV3iHqazniRn1Ypwd1hcRlXcu/4BA==
 
-"@bufbuild/protobuf@^2.12.1":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.13.0.tgz#92ae09d6412c658a56b3c2cd867386850064c901"
-  integrity sha512-acq7c49vxfm1ggJ95P70TX7ABDM0vxr1SYD3BB0o0jnBLB4OAqeHyKuN+cD3w80gXEDQ2zxHpR6CUeA+O/aU9g==
+"@bufbuild/protobuf@^2.13.0":
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.14.0.tgz#a5e962823f9c22c0d5e9aedb9a08d8f93735299c"
+  integrity sha512-C3UGsiCwSprE2NKIIFA3hCDlpXTMCAXRZuEVp88L1GY36Y41+rYL5fryE+nOFhp4p4JPQvdV8PQ4DWgHgeTE+w==
 
-"@cerbos/api@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@cerbos/api/-/api-0.10.0.tgz#aa2638dc0f9981630afb771f075893e4f2fc50ce"
-  integrity sha512-j+SCITUBsb4MFAml5okmXPAOOR1BVTSNLrsdS/h2v4lEYzNiO27t/zPx+779Fe9SzHOFwPT5bhEUgYdRnHa3UA==
+"@cerbos/api@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@cerbos/api/-/api-0.11.0.tgz#bc4823927de02fbded65623f32edb51e86e60311"
+  integrity sha512-Wk9SrcwI75tWFxk065y95+4gFQKCUD7yd0q+OYbW2we9APeBWkJd0voFh2RbPvk4QR23Sz9ozowsZd4Vwtf90Q==
   dependencies:
-    "@bufbuild/protobuf" "^2.12.1"
+    "@bufbuild/protobuf" "^2.13.0"
 
-"@cerbos/core@^0.32.0":
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/@cerbos/core/-/core-0.32.0.tgz#4c9356d5999a20fdb252cb58e686b65adaf9d64c"
-  integrity sha512-ZXL4qCDb+NwJmFJlWimQuegHOEIYKan6mZdYy2Jla126p+Esh5H9RNfHBnMQPbPEE35c5ShyS1ENa/wCCFtFMg==
+"@cerbos/core@^0.33.0":
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/@cerbos/core/-/core-0.33.0.tgz#101ee4c00ace255e89129c9ad4105a3013632f8f"
+  integrity sha512-cf7oZlbLY2+p9pkDgpZycv1xZ8ZmPI5pJJgcm0ct4uCut3m1EzRWSBIfkRBIhEKhL3apPuSVQzevH4Pis0f7Sg==
   dependencies:
-    "@cerbos/api" "^0.10.0"
+    "@cerbos/api" "^0.11.0"
     uuid "^14.0.1"
 
-"@cerbos/grpc@^0.28.0":
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/@cerbos/grpc/-/grpc-0.28.0.tgz#7dd8d3fcad5f8e89a3a711a07a980de93d4aa728"
-  integrity sha512-xfSmizAIYK9wmrCF6xVn94f0cEAGaKafJc+C8sPEfxKAO8suyI7fRK0ETYQ0QRihAUhq8+/i7E7oNJtddSOneg==
+"@cerbos/grpc@^0.29.0":
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/@cerbos/grpc/-/grpc-0.29.0.tgz#601d0c81e9be9bba15a3380c6d290964fa95b9c7"
+  integrity sha512-qo2D7UPqvGp8+/tp8uIN+lCgVd+LVp8thHaVQa07/gSQ1xI7scvZTsmiA49dV3L40gYkmx+942RVWxoCzyfI0w==
   dependencies:
-    "@cerbos/core" "^0.32.0"
+    "@cerbos/core" "^0.33.0"
     "@grpc/grpc-js" "^1.14.4"
 
 "@clack/core@1.4.3":
